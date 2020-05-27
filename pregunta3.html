@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sistema de Autoevalución UNAMBA</title>
+    <!-- <link rel="icon" type="image/png" href="<//?php echo base_url('public/img/costa11.png'); ?>"> -->
+	<link rel="stylesheet" href="public/css/bootstrap.css">
+	<script src="public/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="public/js/bootstrap.js" type="text/javascript"></script>
+
+</head>
+<body>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Otras condiciones</h2>
+                        </div>
+                        <div class="panel-body">
+                            
+                            <form action="">
+                                <h4>¿Vives en la misma casa con alguna persona de los siguientes grupos de riesgos?</h4>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="1">
+                                    <label for="1" class="form-check-label"><h4>Adulto mayor</h4></label><br>
+
+                                    <input type="checkbox" class="form-check-input" id="2">
+                                    <label for="2" class="form-check-label"><h4>Bebé recién nacido o menor de 6 meses</h4></label><br>
+
+                                    <input type="checkbox" class="form-check-input" id="3">
+                                    <label for="3" class="form-check-label"><h4>Niño</h4></label><br>
+
+                                    <input type="checkbox" class="form-check-input" id="4">
+                                    <label for="4" class="form-check-label"><h4>Gestante</h4></label><br>
+
+                                    <input type="checkbox" class="form-check-input" id="5">
+                                    <label for="5" class="form-check-label"><h4>Familiar con enfermedad crónica (enfermedad cardiovascular, enfermedad pulmonar crónica, diabetes, hipertensión, inmunodepresión o cáncer)</h4></label><br>
+
+								</div>
+                                <hr>
+                                <h4>¿Con cuantas personas vives?</h4>
+                                <div class="form-group">
+									<input type="text" class="form-control" maxlength="8" onkeypress="return solonumeros(event)" onpaste="return false" name="txtDni" placeholder="ejemplo:4" pattern="[0-9]{8}" required>
+								</div>
+								<p>Al enviar tus datos, aceptas que el Ministerio de Salud se ponga en contacto contigo para hacerle seguimiento a tu caso y fortalecer la estrategia del Estado Peruano frente al COVID-19 para protegerte a ti y todos los peruanos. La confidencialidad de tus datos es importante para nosotros, por lo que cumplimos con las normativas de protección de datos establecidas.</p>
+								
+                                <nav aria-label="...">
+                                    <ul class="pager">
+                                            <li><a href="pregunta2.html"><span aria-hidden="true">&larr;</span> Atras</a></li>
+                                            <li><a href="final.html">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+                                    </ul>
+                                </nav>
+                            </form>
+                        </div>
+                    </div>  
+                    
+                    <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Continuar</a></p>
+                              -->
+                </div>
+            </div>
+        </div>
+		
+        
+              
+                          
+                
+</body>
+</html>
+<script>
+		//VALIDACIONES
+		function solonumeros(e)
+		{
+			key = e.keyCode || e.which;
+			teclado = String.fromCharCode(key);
+			numeros = "0123456789";
+			especiales = "8-37-38-46";
+			teclado_especial = false;
+			for(var i in especiales)
+			{
+				if(key==especiales[i])
+				{
+					teclado_especial = true;
+				}
+			}
+			if(numeros.indexOf(teclado)==-1 && !teclado_especial)
+			{
+				return false;
+			}
+		}
+		function sololetras(e)
+		{
+			key = e.keyCode || e.which;
+			teclado = String.fromCharCode(key).toLowerCase();
+			letras = " abcdefghijklmnñopqrstuvwxyz";
+			especiales = "8-37-38-46";
+			teclado_especial = false;
+			for(var i in especiales)
+			{
+				if(key==especiales[i])
+				{
+					teclado_especial = true;
+					break;
+				}
+			}
+			if(letras.indexOf(teclado)==-1 && !teclado_especial)
+			{
+				return false;
+			}
+			
+		}
+	</script>

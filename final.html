@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sistema de Autoevalución UNAMBA</title>
+    <!-- <link rel="icon" type="image/png" href="<//?php echo base_url('public/img/costa11.png'); ?>"> -->
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+	<script src="public/js/bootstrap.js"></script>
+</head>
+<body>
+		
+		<div class="jumbotron">
+			
+			<div class="row">
+				<div class="col-md-1">
+				
+				</div>
+				<div class="col-md-10">
+					<center><h1>No eres sospechoso de COVID-19</h1></center>
+								
+						
+			    </div>
+				<div class="col-md-1">
+					
+				</div>
+			</div>
+			<div class="row">
+					<div class="col-md-2">
+						
+					</div>
+					<div class="col-md-5">
+						<div class="row">
+								<div class="col-sm-7 col-md-12">
+								  <div class="thumbnail">
+									
+									<div class="caption">
+											<p>Llama al 106 (SAMU) o al 117 (Essalud) si tienes alguno de estos síntomas:
+
+													Sensación de falta de aire o dificultad para respirar en reposo,
+													Desorientación o confusión,
+													Fiebre mayor a 38°C persistente por más de dos días,
+													Dolor en el pecho,
+													Coloración azul en los labios (cianosis).</p>
+									</div>
+								  </div>
+								</div>
+								<div class="col-sm-7 col-md-12">
+								  <div class="thumbnail">
+									
+									<div class="caption">
+											<p>Llama al 106 (SAMU) o al 117 (Essalud) si tienes alguno de estos síntomas:
+
+													Sensación de falta de aire o dificultad para respirar en reposo,
+													Desorientación o confusión,
+													Fiebre mayor a 38°C persistente por más de dos días,
+													Dolor en el pecho,
+													Coloración azul en los labios (cianosis).</p>
+									</div>
+								  </div>
+								</div>
+						</div>			
+					</div>
+					<div class="col-md-5">
+							<div class="row">
+									<div class="col-sm-6 col-md-10">
+										<div class="thumbnail">
+											<img src="img/tres.jpg" alt="...">
+											<div class="caption">
+												
+												<p>Unamba Licenciada</p>
+												<!-- <p><a href="#" class="btn btn-primary" role="button">Ver detalles</a></p> -->
+											</div>
+										</div>
+									</div>
+								</div>
+					</div>
+			</div>
+	
+		</div>
+		
+		<div class="row">
+			<div class="col-md-2">
+				
+			</div>
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-sm-6 col-md-12">
+						<div class="thumbnail">
+							<img src="img/tres.jpg" alt="...">
+							<div class="caption">
+								<h3>sugerencias</h3>
+								<p>Formas de protegerte ante el coronavirus</p>
+								<p><a href="#" class="btn btn-primary" role="button">Ver detalles</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-sm-6 col-md-8">
+						<div class="thumbnail">
+							<img src="img/dos.jpg" alt="...">
+							<div class="caption">
+								<h3>Ideas</h3>
+								<p>yo me quedo en casa</p>
+								<p><a href="#" class="btn btn-primary" role="button">ver datalles</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
+<script>
+		//VALIDACIONES
+		function solonumeros(e)
+		{
+			key = e.keyCode || e.which;
+			teclado = String.fromCharCode(key);
+			numeros = "0123456789";
+			especiales = "8-37-38-46";
+			teclado_especial = false;
+			for(var i in especiales)
+			{
+				if(key==especiales[i])
+				{
+					teclado_especial = true;
+				}
+			}
+			if(numeros.indexOf(teclado)==-1 && !teclado_especial)
+			{
+				return false;
+			}
+		}
+		function sololetras(e)
+		{
+			key = e.keyCode || e.which;
+			teclado = String.fromCharCode(key).toLowerCase();
+			letras = " abcdefghijklmnñopqrstuvwxyz";
+			especiales = "8-37-38-46";
+			teclado_especial = false;
+			for(var i in especiales)
+			{
+				if(key==especiales[i])
+				{
+					teclado_especial = true;
+					break;
+				}
+			}
+			if(letras.indexOf(teclado)==-1 && !teclado_especial)
+			{
+				return false;
+			}
+			
+		}
+	</script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sistema de Autoevalución UNAMBA</title>
+    <!-- <link rel="icon" type="image/png" href="<//?php echo base_url('public/img/costa11.png'); ?>"> -->
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+	<script src="public/js/bootstrap.js"></script>
+</head>
+<body>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2>Situaciones de riesgo</h2>
+                        </div>
+                        <div class="panel-body">
+                            
+                            <form action="">
+                                <h4>¿En los últimos 14 días, has tenido contacto con un caso confirmado de coronavirus COVID-19?</h4>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="1" name="default">
+                                    <label for="1" class="custom-control-label"><h4>Sí</h4></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="2" name="default">
+                                    <label for="2" class="custom-control-label"><h4>No</h4></label>
+                                </div>
+                                <hr>
+                                <h4>¿En los últimos 14 días, te has desplazado a un distrito diferente al de tu residencia?</h4>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="3" name="default1">
+                                    <label for="3" class="custom-control-label"><h4>Sí</h4></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="4" name="default1">
+                                    <label for="4" class="custom-control-label"><h4>No</h4></label>
+                                </div>
+								<hr>
+								<h4>¿Has estado en contacto con algun centro de estabelcimiento de salud que atienda casos de Covid-19?</h4>
+								<div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="5" name="default2">
+                                    <label for="5" class="custom-control-label"><h4>Sí</h4></label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="6" name="default2">
+                                    <label for="6" class="custom-control-label"><h4>No</h4></label>
+                                </div>
+                                <nav aria-label="...">
+                                    <ul class="pager">
+                                            <li><a href="pregunta.html"><span aria-hidden="true">&larr;</span> Atras</a></li>
+                                            <li><a href="pregunta2.html">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+                                    </ul>
+                                </nav>
+                            </form>
+                        </div>
+                    </div>  
+                    
+                    <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Continuar</a></p>
+                              -->
+                </div>
+            </div>
+        </div>
+		
+        
+              
+                          
+                
+</body>
+</html>
+<script>
+		//VALIDACIONES
+		function solonumeros(e)
+		{
+			key = e.keyCode || e.which;
+			teclado = String.fromCharCode(key);
+			numeros = "0123456789";
+			especiales = "8-37-38-46";
+			teclado_especial = false;
+			for(var i in especiales)
+			{
+				if(key==especiales[i])
+				{
+					teclado_especial = true;
+				}
+			}
+			if(numeros.indexOf(teclado)==-1 && !teclado_especial)
+			{
+				return false;
+			}
+		}
+		function sololetras(e)
+		{
+			key = e.keyCode || e.which;
+			teclado = String.fromCharCode(key).toLowerCase();
+			letras = " abcdefghijklmnñopqrstuvwxyz";
+			especiales = "8-37-38-46";
+			teclado_especial = false;
+			for(var i in especiales)
+			{
+				if(key==especiales[i])
+				{
+					teclado_especial = true;
+					break;
+				}
+			}
+			if(letras.indexOf(teclado)==-1 && !teclado_especial)
+			{
+				return false;
+			}
+			
+		}
+	</script>
