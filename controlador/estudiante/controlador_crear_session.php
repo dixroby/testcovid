@@ -1,15 +1,15 @@
 <?php
-$idmedico = $_POST['idmed'];
-$medico_nombre = $_POST['user'];
-$medico_apepat = $_POST['rol'];
-$medico_apemat = $_POST['user'];
-$especialidad = $_POST['rol'];
+$cod = $_POST['cod'];
+$nombre = $_POST['nombre'];
+$ap = $_POST['ap'];
+$am = $_POST['am'];
+$dni = $_POST['dni'];
 
 session_start();
 
-$_SESSION['S_IDMEDICO']=$idmedico;
-$_SESSION['S_MEDICO']=$medico_nombre;
-$_SESSION['S_MEDICOAP']=$medico_apepat;
-$_SESSION['S_MEDICOAM']=$medico_apemat;
-$_SESSION['S_ESPECIALIDAD']=$especialidad;
+$_SESSION['cod']=$cod;
+$_SESSION['nombre']=$nombre;
+$_SESSION['ap']=$ap;
+$_SESSION['am']=$am;
+$_SESSION['dni']=$dni;
 ?>

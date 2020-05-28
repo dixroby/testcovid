@@ -17,51 +17,35 @@ function VerificarEstudiante() {
             tel:tel
         }
     }).done(function (resp) {
-        if (resp == 0) {
-           
-               return Swal.fire("Mensaje De Error", "Estudiante y/o Codigo, incorrecto ", "error");
-                
-        } else {
-            var data = JSON.parse(resp);
-            $.ajax({
-                url: 'controlador/estudiante/controlador_crear_session.php',
-                type: 'POST',
-                data: {
-                    cod: data[0][0],
-                    est: data[0][4],
-                    tel: data[0][8]
-                }
-            }).done(function (resp) {
-                let timerInterval
-                Swal.fire({
-                    title: 'TEST CORONAVIRUS',
-                    html: 'Usted sera redireccionado en <b></b> milisegundos.',
-                    timer: 2000,
-                    timerProgressBar: true,
-                    onBeforeOpen: () => {
-                        Swal.showLoading()
-                        timerInterval = setInterval(() => {
-                            const content = Swal.getContent()
-                            if (content) {
-                                const b = content.querySelector('b')
-                                if (b) {
-                                    b.textContent = Swal.getTimerLeft()
-                                }
-                            }
-                        }, 100)
-                    },
-                    onClose: () => {
-                        clearInterval(timerInterval)
+        
+        let timerInterval;
+        Swal.fire({
+            title: 'BIENVENIDO AL SISTEMA',
+            html: 'Usted sera redireccionado en <b></b> milisegundos.',
+            timer: 22000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
                     }
-                }).then((result) => {
-                    /* Read more about handling dismissals below */
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        location.reload();
-                    }
-                })
-            })
-
-        }
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                location.reload();
+            }
+        })
+            
     })
 }
 var table;
