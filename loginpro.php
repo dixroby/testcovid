@@ -1,0 +1,147 @@
+<?php
+session_start();
+if(isset($_SESSION['S_IDUSUARIO'])){
+	header('Location: ../vista/index.php');
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ingreso Al sistema</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" >
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="border:1px solid black;">
+                <span class="login100-form-title p-b-49">
+                    INICIAR SESI&Oacute;N
+                </span>
+
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="txt_usu" 
+                        placeholder="Enter Email Address...">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user" id="txt_con" placeholder="Password">
+                </div>
+
+                <div class="text-bold p-t-8 p-b-31">
+                    <a href="#" onclick="AbrirModalRestablecer()">
+                        Olvidaste la contrase&ntilde;a?
+                    </a>
+                </div>
+                
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <a href="indexadmin.html" class="btn btn-primary btn-user btn-block">
+                      <b>Login</b>
+                    </a>
+                    </div>
+                </div><br>
+
+                <div class="flex-c-m">
+                    <a href="#" class="login100-social-item bg1">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+
+                    <a href="#" class="login100-social-item bg2">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+
+                    <a href="#" class="login100-social-item bg3">
+                        <i class="fa fa-google"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="dropDownSelect1"></div>
+
+
+    <form autocomplete="false" onsubmit="return false">
+        <div class="modal fade" id="modal_restablecer_contra" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="text-align:left"><b>Recuperar Contrase&ntilde;a</b></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" style="background-color: #7775754a;;">
+                        <div class="col-lg-12">
+                            <label for="">Ingrese Email</label>
+                            <input type="text" class="form-control" id="txt_email" placeholder="Ingrese Email"><br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="Restablecer_Contra()"><i
+                                class="fa fa-check"><b>&nbsp;Enviar</b></i></button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i
+                                class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!--===============================================================================================-->
+    <script src="vendor/sweetalert2/sweetalert2.js"></script>
+    <!--===============================================================================================-->
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+    <script src="../js/usuario.js"></script>
+
+</body>
+<script>
+txt_usu.focus();
+</script>
+
+</html>

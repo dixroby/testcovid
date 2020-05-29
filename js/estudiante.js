@@ -2,9 +2,9 @@ function VerificarEstudiante() {
     var dni = $("#txt_Dni").val();
     var con = $("#txt_Codigo").val();
     var tel = $("#tx_tTelefono").val();
-    
 
-    if (dni.length == 0 || con.length == 0|| tel.length == 0) {
+
+    if (dni.length == 0 || con.length == 0 || tel.length == 0) {
         return Swal.fire("Mensaje De Advertencia", "Llene los campos vacios", "warning");
     }
 
@@ -14,15 +14,15 @@ function VerificarEstudiante() {
         data: {
             dni: dni,
             con: con,
-            tel:tel
+            tel: tel
         }
     }).done(function (resp) {
-        
+
         let timerInterval;
         Swal.fire({
-            title: 'BIENVENIDO AL SISTEMA',
-            html: 'Usted sera redireccionado en <b></b> milisegundos.',
-            timer: 22000,
+            title: 'TEST UNAMBA',
+            html: 'Por favor lea detenidamente y respoda las siguientes preguntas <br><br>Su test empieza en <b></b> milisegundos.',
+            timer: 5000,
             timerProgressBar: true,
             onBeforeOpen: () => {
                 Swal.showLoading()
@@ -45,242 +45,179 @@ function VerificarEstudiante() {
                 location.reload();
             }
         })
-            
+
     })
 }
 var table;
-function listar_usuario() {
-    table = $("#tabla_usuario").DataTable({
-        "ordering": false,
-        "bLengthChange": false,
-        "searching": { "regex": false },
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-        "pageLength": 20,
-        "destroy": true,
-        "async": false,
-        "processing": true,
-        "ajax": {
-            "url": "../controlador/usuario/controlador_usuario_listar.php",
-            type: 'POST'
-        },
-        "columns": [
-            { "data": "posicion" },
-            { "data": "usu_nombre" },
-            { "data": "usu_email" ,
-                    render: function (data, type, row) {
-                        if (data == "") {
-                            return "sin correo electronico";
-                        } else{
-                            return data;
-                        }
-                    }
-            },
-            { "data": "rol_nombre" },
-            {
-                "data": "usu_sexo",
-                render: function (data, type, row) {
-                    if (data == 'M') {
-                        return "MASCULINO";
-                    } else {
-                        return "FEMENINO";
-                    }
-                }
-            },
-            {
-                "data": "usu_estatus",
-                render: function (data, type, row) {
-                    if (data == 'ACTIVO') {
-                        return "<span class='label label-success'>" + data + "</span>";
-                    } else {
-                        return "<span class='label label-danger'>" + data + "</span>";
-                    }
-                }
-            },
-            {
-                "data": "usu_estatus",
-                render: function (data, type, row) {
-                    if (data == 'ACTIVO') {
-                        return "<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-trash'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success' disabled><i class='fa fa-check'></i></button>";
-                    } else {
-                        return "<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'disabled><i class='fa fa-trash'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>";
-                    }
-                }
+
+
+function valores() {
+    var dni = document.getElementById("txtdniidid").value;  
+    var nota = 0;
+    var estado = '';
+
+    if (document.getElementById('p11').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p11').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p11').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p11').checked) {
+        nota = nota + 2;
+    }
+    if (document.getElementById('p11').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p11').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p11').checked) {
+        nota = nota + 0;
+    }
+    //////////////////////////////////////////////////////7
+    if (document.getElementById('p21').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p21').checked) {
+        nota = nota + 0;
+    }
+    //////////////////// situacion de riesgo//////////////////////////////////7
+    if (document.getElementById('p31').checked) {
+        nota = nota + 2;
+    }
+    if (document.getElementById('p31').checked) {
+        nota = nota + 0;
+    }
+    //¿En los últimos 14 días, te has desplazado a un distrito diferente al de tu residencia? 
+    if (document.getElementById('p41').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p42').checked) {
+        nota = nota + 0;
+    }
+    //¿Has estado en contacto con algun centro de estabelcimiento de salud que atienda casos
+    //de Covid-19?
+    if (document.getElementById('p51').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p52').checked) {
+        nota = nota + 0;
+    }
+
+    // Otras condiciones - ¿Tienes alguna de las siguientes enfermedades o condiciones?
+    if (document.getElementById('p61').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p62').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p63').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p64').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p65').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p66').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p67').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p68').checked) {
+        nota = nota + 0.51;
+    }
+    if (document.getElementById('p69').checked) {
+        nota = nota + 0.5;
+    }
+    //¿En los últimos 14 días, te has desplazado a un distrito diferente al de tu residencia?
+    if (document.getElementById('p71').checked) {
+        nota = nota + 1;
+    }
+    if (document.getElementById('p72').checked) {
+        nota = nota + 1;
+    }
+    //Otras condiciones ¿Vives en la misma casa con alguna persona de los siguientes grupos de riesgos?
+    if (document.getElementById('p81').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p82').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p83').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p84').checked) {
+        nota = nota + 0.5;
+    }
+    if (document.getElementById('p85').checked) {
+        nota = nota + 0.5;
+    }
+
+
+
+    if (nota <= 4) {
+        estado = 'NO';
+        $.ajax({
+            "url": "controlador/estudiante/controlador_estudiante_covid_no.php",
+            type: 'POST',
+            data: {
+                dni: dni,
+                estado: estado
             }
-        ],
-
-        "language": idioma_espanol,
-        select: true
-    });
-    document.getElementById("tabla_usuario_filter").style.display = "none";
-    $('input.global_filter').on('keyup click', function () {
-        filterGlobal();
-    });
-    $('input.column_filter').on('keyup click', function () {
-        filterColumn($(this).parents('tr').attr('data-column'));
-    });
-
-}
-
-$('#tabla_usuario').on('click', '.activar', function () {
-    var data = table.row($(this).parents('tr')).data();
-    if (table.row(this).child.isShown()) {
-        var data = table.row(this).data();
-    }
-    Swal.fire({
-        title: 'Esta seguro de activar al usuario?',
-        text: "Una vez hecho esto el usuario  tendra acceso al sistema",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si'
-    }).then((result) => {
-        if (result.value) {
-            Modificar_Estatus(data.usu_id, 'ACTIVO');
-        }
-    })
-})
-
-$('#tabla_usuario').on('click', '.desactivar', function () {
-    var data = table.row($(this).parents('tr')).data();
-    if (table.row(this).child.isShown()) {
-        var data = table.row(this).data();
-    }
-    Swal.fire({
-        title: 'Esta seguro de desactivar al usuario?',
-        text: "Una vez hecho esto el usuario no tendra acceso al sistema",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si'
-    }).then((result) => {
-        if (result.value) {
-            Modificar_Estatus(data.usu_id, 'INACTIVO');
-        }
-    })
-})
-
-$('#tabla_usuario').on('click', '.editar', function () {
-    var data = table.row($(this).parents('tr')).data();
-    if (table.row(this).child.isShown()) {
-        var data = table.row(this).data();
-    }
-    $("#modal_editar").modal({ backdrop: 'static', keyboard: false })
-    $("#modal_editar").modal('show');
-    $("#txtidusuario").val(data.usu_id);
-    $("#txtusu_editar").val(data.usu_nombre);
-    $("#txt_email_editar").val(data.usu_email);
-    $("#cbm_sexo_editar").val(data.usu_sexo).trigger("change");
-    $("#cbm_rol_editar").val(data.rol_id).trigger("change");
-})
-
-function Modificar_Estatus(idusuario, estatus) {
-    var mensaje = "";
-    if (estatus == 'INACTIVO') {
-        mensaje = "desactivo";
-    } else {
-        mensaje = "activo";
-    }
-    $.ajax({
-        "url": "../controlador/usuario/controlador_modificar_estatus_usuario.php",
-        type: 'POST',
-        data: {
-            idusuario: idusuario,
-            estatus: estatus
-        }
-    }).done(function (resp) {
-        if (resp > 0) {
-            Swal.fire("Mensaje De Confirmacion", "El usuario se " + mensaje + " con exito", "success")
-                .then((value) => {
-                    table.ajax.reload();
-                });
-        }
-    })
-
-
-}
-
-function filterGlobal() {
-    $('#tabla_usuario').DataTable().search(
-        $('#global_filter').val(),
-    ).draw();
-}
-
-function AbrirModalRegistro() {
-    $("#modal_registro").modal({ backdrop: 'static', keyboard: false })
-    $("#modal_registro").modal('show');
-}
-
-function listar_combo_rol() {
-    $.ajax({
-        "url": "../controlador/usuario/controlador_combo_rol_listar.php",
-        type: 'POST'
-    }).done(function (resp) {
-        var data = JSON.parse(resp);
-        var cadena = "";
-        if (data.length > 0) {
-            for (var i = 0; i < data.length; i++) {
-                cadena += "<option value='" + data[i][0] + "'>" + data[i][1] + "</option>";
-            }
-            $("#cbm_rol").html(cadena);
-            $("#cbm_rol_editar").html(cadena);
-        } else {
-            cadena += "<option value=''>NO SE ENCONTRARON REGISTROS</option>";
-            $("#cbm_rol").html(cadena);
-            $("#cbm_rol_editar").html(cadena);
-        }
-    })
-}
-
-function Registrar_Usuario() {
-    var usu = $("#txt_usu").val();
-    var contra = $("#txt_con1").val();
-    var contra2 = $("#txt_con2").val();
-    var sexo = $("#cbm_sexo").val();
-    var rol = $("#cbm_rol").val();
-    var email = $("#txt_email").val();
-    var validaremail = $("#validar_email").val();
-    if (usu.length == 0 || contra.length == 0 || contra.length == 0 || contra2.length == 0 || sexo.length == 0 || rol.length == 0) {
-        return Swal.fire("Mensaje De Advertencia", "Llene los campos vacios", "warning");
-    }
-
-    if (contra != contra2) {
-        return Swal.fire("Mensaje De Advertencia", "Las contraseñas deben coincidir", "warning");
-    }
-
-    if (validaremail=="incorrecto") { 
-        return Swal.fire("Mensaje De Advertencia", "Ingrese un formato valido de Email", "warning");
-    }
-
-    $.ajax({
-        "url": "../controlador/usuario/controlador_usuario_registro.php",
-        type: 'POST',
-        data: {
-            usuario: usu,
-            contrasena: contra,
-            sexo: sexo,
-            rol: rol,
-            email:email
-        }
-    }).done(function (resp) {
-        if (resp > 0) {
-            if (resp == 1) {
-                $("#modal_registro").modal('hide');
-                Swal.fire("Mensaje De Confirmacion", "Datos correctamente, Nuevo Usuario Registrado", "success")
+        }).done(function (resp) {
+            if (resp > 0) {
+                Swal.fire("Mensaje De Confirmacion", "Test realizado con exito", "success")
                     .then((value) => {
-                        LimpiarRegistro();
-                        table.ajax.reload();
+                        window.location = 'final.php';
                     });
-            } else {
-                return Swal.fire("Mensaje De Advertencia", "Lo sentimos, el nombre del usuario ya se encuentra en nuestra base de datos", "warning");
             }
-        } else {
-            Swal.fire("Mensaje De Error", "Lo sentimos, no se pudo completar el registro", "error");
-        }
-    })
+        })
 
+    }
+    if (nota > 4 && nota <= 5) {
+        alert("tal vez");
+        estado = 'PENDIENTE';
+        $.ajax({
+            "url": "controlador/estudiante/controlador_estudiante_covid_no.php",
+            type: 'POST',
+            data: {
+                dni: dni,
+                estado: estado
+            }
+        }).done(function (resp) {
+            if (resp > 0) {
+                Swal.fire("Mensaje De Confirmacion", "Test realizado con exito", "success")
+                    .then((value) => {
+                        window.location = 'final2.php';
+                    });
+            }
+        })
+    }
+    if (nota > 5) {
 
+        estado = 'SI';
+        $.ajax({
+            "url": "controlador/estudiante/controlador_estudiante_covid_no.php",
+            type: 'POST',
+            data: {
+                dni: dni,
+                estado: estado
+            }
+        }).done(function (resp) {
+            if (resp > 0) {
+                Swal.fire("Mensaje De Confirmacion", "Test realizado con exito", "success")
+                    .then((value) => {
+                        window.location = 'final3.php';
+                    });
+            }
+        })
+    }
 }
 
 function Modificar_Usuario() {
@@ -292,7 +229,7 @@ function Modificar_Usuario() {
     if (idusuario.length == 0 || sexo.length == 0 || rol.length == 0) {
         return Swal.fire("Mensaje De Advertencia", "Llene los campos vacios", "warning");
     }
-    if (validaremail=="incorrecto") { 
+    if (validaremail == "incorrecto") {
         return Swal.fire("Mensaje De Advertencia", "Ingrese un formato valido de Email", "warning");
     }
 
@@ -303,7 +240,7 @@ function Modificar_Usuario() {
             idusuario: idusuario,
             sexo: sexo,
             rol: rol,
-            email:email
+            email: email
         }
     }).done(function (resp) {
         if (resp > 0) {
@@ -317,130 +254,4 @@ function Modificar_Usuario() {
             Swal.fire("Mensaje De Error", "Lo sentimos, no se pudo completar la actualización", "error");
         }
     })
-}
-
-function LimpiarRegistro() {
-    $("#txt_usu").val("");
-    $("#txt_con1").val("");
-    $("#txt_con2").val("");
-}
-
-function TraerDatosUsuario() {
-    var usuario = $("#usuarioprincipal").val();
-    $.ajax({
-        "url": "../controlador/usuario/controlador_traerdatos_usuario.php",
-        type: 'POST',
-        data: {
-            usuario: usuario
-        }
-
-    }).done(function (resp) {
-        var data = JSON.parse(resp);
-        if (data.length > 0) {
-            $("#txtcontra_bd").val(data[0][2]);
-            if (data[0][3] == "M") {
-                $("#img_nav").attr("src", "../Plantilla/dist/img/doctor.JPG");
-                $("#img_subnav").attr("src", "../Plantilla/dist/img/doctor.jpg");
-                $("#img_lateral").attr("src", "../Plantilla/dist/img/doctor.jpg");
-            } else {
-                $("#img_nav").attr("src", "../Plantilla/dist/img/doctora.JPG");
-                $("#img_subnav").attr("src", "../Plantilla/dist/img/doctora.jpg");
-                $("#img_lateral").attr("src", "../Plantilla/dist/img/doctora.jpg");
-            }
-
-        }
-    })
-}
-
-function AbrirModalEditarContra() {
-    $("#modal_editar_contra").modal({ backdrop: 'static', keyboard: false });
-    $("#modal_editar_contra").modal('show');
-    $("#modal_editar_contra").on('shown.bs.modal', function () {
-        $("#txtcontraactual_editar").focus();
-    })
-}
-
-function Editar_Contra() {
-    var idusuario = $("#txtidprincipal").val();
-    var contrabd = $("#txtcontra_bd").val();
-    var contraescrita = $("#txtcontraactual_editar").val();
-    var contranu = $("#txtcontranun_editar").val();
-    var contrare = $("#txtcontrare_editar").val();
-
-    if (contraescrita.length == 0 || contranu.length == 0 || contrare.length == 0) {
-        return Swal.fire("Mensaje de adevertencia", "LLena los campos vacios", "warning");
-    }
-    if (contranu = !contrare) {
-        return Swal.fire("Mensaje de adevertencia", "La contraseña repetida no coencide", "warning");
-    }
-
-    $.ajax({
-        url: '../controlador/usuario/controlador_contra_modificar.php',
-        type: 'POST',
-        data: {
-            idusuario: idusuario,
-            contrabd: contrabd,
-            contraescrita: contraescrita,
-            contranu: contranu
-        }
-    }).done(function (resp) {
-        if (resp > 0) {
-            if (resp == 1) {
-                LimpiarEditarContra();
-                $("#modal_editar_contra").modal('hide');
-                Swal.fire("Mensaje De Confirmacion", "contra\u00f1a actualizada con exito", "success")
-                    .then((value) => {
-                        TraerDatosUsuario();
-                    });
-            } else {
-                Swal.fire("Mensaje de Error", "No se pudo actualizar la contra\u00f1a, la nueva contra\u00f1a ingresada no coencide con la que tenemos en base de datos", "error");
-            }
-        } else {
-            Swal.fire("Mensaje de Error", "No se pudo actualizar la contrase\u00f1a", "error");
-        }
-    })
-}
-function LimpiarEditarContra() {
-    $("#txtcontraactual_editar").val("");
-    $("#txtcontra_editar").val("");
-    $("#txtcontrare_editar").val("");
-}
-
-function AbrirModalRestablecer(){
-    $("#modal_restablecer_contra").modal({ backdrop: 'static', keyboard: false });
-    $("#modal_restablecer_contra").modal('show');
-    $("#modal_restablecer_contra").on('shown.bs.modal', function () {
-        $("#txt_email").focus();
-    });
-}
-
-function Restablecer_Contra(){
-    var email = $("#txt_email").val();
-    if (email.length==0) {
-        return Swal.fire("Mensaje De Advertencia", "Ingrese Email", "warning");
-    }
-    var caracteres = "abcdefrwrkdjshjsfhjsfhsREABCDQWERTY12344465!#$%$&=";
-    var contrasena="";
-    for (let i = 0; i < 6; i++) {
-        contrasena += caracteres.charAt(Math.floor(Math.random()*caracteres.length));    
-    }
-    $.ajax({
-        url:"../controlador/usuario/controlador_restablecer_contra.php",
-        type:'POST',
-        data:{
-            email:email,
-            contrasena:contrasena
-        }
-    }).done(function(resp){
-        if (resp>0) {
-            if (resp==1) {
-                Swal.fire("Mensaje De Confirmaci&#241;n", "su contraseña fue restablecida con exito al correo " + email + "", "success")
-            }else{
-                Swal.fire("Mensaje de advertencia ", "no se encuentra el correo <b>" + email + "</b> en nuestra data", "warning")
-            }
-        } else {
-            Swal.fire("Mensaje De Error", 'no se pudo restablecer su contrase&#241;a', "error");
-        }
-    })
-
 }

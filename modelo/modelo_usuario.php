@@ -27,10 +27,7 @@
 			$arreglo = array();
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				while ($consulta_VU = mysqli_fetch_array($consulta)) {
-					if(password_verify($contra, $consulta_VU["usu_contrasena"]))
-                    {
-                        $arreglo[] = $consulta_VU;
-                    }
+					   $arreglo[] = $consulta_VU;
 				}
 				return $arreglo;
 				$this->conexion->cerrar();
@@ -76,6 +73,16 @@
 		
 		function Modificar_Estatus_Usuario($idusuario,$estatus){
             $sql = "call SP_MODIFICAR_ESTATUS_USUARIO('$idusuario','$estatus')";
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				return 1;
+				
+			}else{
+				return 0;
+			}
+		}
+		
+		function Modificar_Estatus_ESTUDIANTE_NO($dni,$estado){
+            $sql = "call SP_MODIFICAR_ESTATUS_ESTUDIANTE('$dni','$estado')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				return 1;
 				
