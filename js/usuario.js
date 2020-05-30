@@ -337,7 +337,7 @@ function Modificar_Usuario() {
     }).done(function (resp) {
         if (resp > 0) {
             $("#modal_editar").modal('hide');
-            Swal.fire("Mensaje De Confirmacion", "Datos actualizados correctamente.", "success")
+            Swal.fire("Mensaje De Confirmacion", "Se marco como .", "success")
                 .then((value) => {
                     table.ajax.reload();
                     TraerDatosUsuario();

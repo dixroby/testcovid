@@ -1,3 +1,141 @@
+var table;
+function listar_estudiante_no() {
+    table = $("#tabla_est").DataTable({
+        "ordering": false,
+        "bLengthChange": false,
+        "searching": { "regex": false },
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "pageLength": 20,
+        "destroy": true,
+        "async": false,
+        "processing": true,
+        "ajax": {
+            "url": "../controlador/estudiante/controlador_estudiante_listar_no.php",
+            type: 'POST'
+        },
+        "columns": [
+            { "defaultContent": "" },
+            {
+                "data": "EstadoAlumno",
+                render: function (data, type, row) {
+                    if (data == "SI") {
+                        return "Presenta sintomas altas.";
+                    }
+                    if (data == "NO") {
+                        return "No presenta sintomas.";
+                    }
+
+                    if (data == "PENDIENTE") {
+                        return "En sospecha.";
+                    }
+                }
+            },
+            { "data": "atendido" },
+            { "data": "CodAlumno" },
+            { "data": "nombres" },
+            { "data": "DNIAlumno" },
+            { "data": "TelefonoAlumno" },
+            {
+                "data": "atendido",
+                render: function (data, type, row) {
+                    if (data == 'SI') {
+                        return "<button disabled style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-fw fa-check-square-o'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-fw fa-times'></i></button>";
+                        
+                    } else {
+                        return "<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-fw fa-check-square-o'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-fw fa-times'></i></button>";
+                    }
+                }
+            }
+        ],
+
+        "language": idioma_espanol,
+        select: true
+    });
+    document.getElementById("tabla_est_filter").style.display = "none";
+    $('input.global_filter').on('keyup click', function () {
+        filterGlobal();
+    });
+    $('input.column_filter').on('keyup click', function () {
+        filterColumn($(this).parents('tr').attr('data-column'));
+    });
+    //codigo para el contador de numero de registros
+    table.on('draw.dt', function () {
+        var PageInfo = $('#tabla_est').DataTable().page.info();
+        table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1 + PageInfo.start;
+        });
+    });
+
+}
+function listar_estudiante() {
+    table = $("#tabla_est").DataTable({
+        "ordering": false,
+        "bLengthChange": false,
+        "searching": { "regex": false },
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "pageLength": 20,
+        "destroy": true,
+        "async": false,
+        "processing": true,
+        "ajax": {
+            "url": "../controlador/estudiante/controlador_estudiante_listar.php",
+            type: 'POST'
+        },
+        "columns": [
+            { "defaultContent": "" },
+            {
+                "data": "EstadoAlumno",
+                render: function (data, type, row) {
+                    if (data == "SI") {
+                        return "Presenta sintomas altas.";
+                    }
+                    if (data == "NO") {
+                        return "No presenta sintomas.";
+                    }
+
+                    if (data == "PENDIENTE") {
+                        return "En sospecha.";
+                    }
+                }
+            },
+            { "data": "atendido" },
+            { "data": "CodAlumno" },
+            { "data": "nombres" },
+            { "data": "DNIAlumno" },
+            { "data": "TelefonoAlumno" },
+            {
+                "data": "atendido",
+                render: function (data, type, row) {
+                    if (data == 'SI') {
+                        return "<button disabled style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-fw fa-check-square-o'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-fw fa-times'></i></button>";
+                        
+                    } else {
+                        return "<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-fw fa-check-square-o'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger' disabled><i class='fa fa-fw fa-times'></i></button>";
+                    }
+                }
+            }
+        ],
+
+        "language": idioma_espanol,
+        select: true
+    });
+    document.getElementById("tabla_est_filter").style.display = "none";
+    $('input.global_filter').on('keyup click', function () {
+        filterGlobal();
+    });
+    $('input.column_filter').on('keyup click', function () {
+        filterColumn($(this).parents('tr').attr('data-column'));
+    });
+    //codigo para el contador de numero de registros
+    table.on('draw.dt', function () {
+        var PageInfo = $('#tabla_est').DataTable().page.info();
+        table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1 + PageInfo.start;
+        });
+    });
+
+}
+
 function VerificarEstudiante() {
     var dni = $("#txt_Dni").val();
     var con = $("#txt_Codigo").val();
@@ -52,9 +190,10 @@ var table;
 
 
 function valores() {
-    var dni = document.getElementById("txtdniidid").value;  
+    var dni = document.getElementById("txtdniidid").value;
     var nota = 0;
     var estado = '';
+    var prueba = 'SI';
 
     if (document.getElementById('p11').checked) {
         nota = nota + 1;
@@ -168,7 +307,8 @@ function valores() {
             type: 'POST',
             data: {
                 dni: dni,
-                estado: estado
+                estado: estado,
+                prueba: prueba
             }
         }).done(function (resp) {
             if (resp > 0) {
@@ -188,7 +328,8 @@ function valores() {
             type: 'POST',
             data: {
                 dni: dni,
-                estado: estado
+                estado: estado,
+                prueba: prueba
             }
         }).done(function (resp) {
             if (resp > 0) {
@@ -207,7 +348,8 @@ function valores() {
             type: 'POST',
             data: {
                 dni: dni,
-                estado: estado
+                estado: estado,
+                prueba: prueba
             }
         }).done(function (resp) {
             if (resp > 0) {
@@ -220,38 +362,70 @@ function valores() {
     }
 }
 
-function Modificar_Usuario() {
-    var idusuario = $("#txtidusuario").val();
-    var sexo = $("#cbm_sexo_editar").val();
-    var rol = $("#cbm_rol_editar").val();
-    var email = $("#txt_email_editar").val();
-    var validaremail = $("#validar_email_editar").val();
-    if (idusuario.length == 0 || sexo.length == 0 || rol.length == 0) {
-        return Swal.fire("Mensaje De Advertencia", "Llene los campos vacios", "warning");
-    }
-    if (validaremail == "incorrecto") {
-        return Swal.fire("Mensaje De Advertencia", "Ingrese un formato valido de Email", "warning");
-    }
-
+function Atender_Estudiante() {
+    var id = $("#txtid").val();
+    
     $.ajax({
-        "url": "../controlador/usuario/controlador_usuario_modificar.php",
+        "url": "../controlador/estudiante/controlador_estudiante_atender.php",
         type: 'POST',
         data: {
-            idusuario: idusuario,
-            sexo: sexo,
-            rol: rol,
-            email: email
+            id: id
         }
     }).done(function (resp) {
         if (resp > 0) {
             $("#modal_editar").modal('hide');
-            Swal.fire("Mensaje De Confirmacion", "Datos actualizados correctamente.", "success")
+            Swal.fire("Mensaje De Confirmacion", "Se marco como <b>atendido</b> al estudiante.", "success")
                 .then((value) => {
                     table.ajax.reload();
-                    TraerDatosUsuario();
                 });
         } else {
-            Swal.fire("Mensaje De Error", "Lo sentimos, no se pudo completar la actualización", "error");
+            Swal.fire("Mensaje De Error", "Lo sentimos, no se pudo completar la atención", "error");
         }
     })
 }
+
+function Atender_Estudiante_No() {
+    var id = $("#txtid_editar").val();
+    
+    $.ajax({
+        "url": "../controlador/estudiante/controlador_estudiante_atender_cancelar.php",
+        type: 'POST',
+        data: {
+            id: id
+        }
+    }).done(function (resp) {
+        if (resp > 0) {
+            $("#modal_cancelar").modal('hide');
+            Swal.fire("Mensaje De Confirmacion", "Se marco como <b>No atendido</b> al estudiante.", "success")
+                .then((value) => {
+                    table.ajax.reload();
+                });
+        } else {
+            Swal.fire("Mensaje De Error", "Lo sentimos, no se pudo completar la atención", "error");
+        }
+    })
+}
+
+$('#tabla_est').on('click', '.editar', function () {
+    var data = table.row($(this).parents('tr')).data();
+    if (table.row(this).child.isShown()) {
+        var data = table.row(this).data();
+    }
+    $("#modal_editar").modal({ backdrop: 'static', keyboard: false })
+    $("#modal_editar").modal('show');
+    $("#txtid").val(data.CodAlumno);
+    $("#cod").val(data.CodAlumno);
+    $("#nombre").val(data.nombres);
+    $("#tel").val(data.TelefonoAlumno);
+})
+
+$('#tabla_est').on('click', '.desactivar', function () {
+    var data = table.row($(this).parents('tr')).data();
+    if (table.row(this).child.isShown()) {
+        var data = table.row(this).data();
+    }
+    $("#modal_cancelar").modal({ backdrop: 'static', keyboard: false })
+    $("#modal_cancelar").modal('show');
+    $("#txtid_editar").val(data.CodAlumno);
+    $("#nombre").val(data.nombres);
+})

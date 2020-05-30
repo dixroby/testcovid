@@ -267,7 +267,22 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
           </a>
           
         </li>
+
+        <li class="treeview active menu-open" style="height: auto;">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Test Estudiantes</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="">
+            <li><a onclick="cargar_contenido('contenido_principal','usuario/vista_estudiante_no_listar.php')"><i class="fa fa-fw fa-arrow-right"></i>Lista Pendiente</a></li>
+            <li class="active"><a onclick="cargar_contenido('contenido_principal','usuario/vista_estudiante_si_listar.php')"><i class="fa fa-fw fa-arrow-right"></i> Atendidos</a></li>
+          </ul>
+        </li>
       </ul>
+      
     </section>
     <!-- /.sidebar -->  
   </aside>

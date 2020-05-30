@@ -46,8 +46,35 @@
 			}
         }
 
-        function listar_usuario(){
+		function listar_usuario(){
             $sql = "call SP_LISTAR_USUARIO()";
+			$arreglo = array();
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
+                    $arreglo["data"][]=$consulta_VU;
+
+				}
+				return $arreglo;
+				$this->conexion->cerrar();
+			}
+        }
+
+
+        function listar_estudiantes_con_test(){
+            $sql = "call SP_LISTAR_ESTUDIANTE_CON_TEST_ATENDIDOS()";
+			$arreglo = array();
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
+                    $arreglo["data"][]=$consulta_VU;
+
+				}
+				return $arreglo;
+				$this->conexion->cerrar();
+			}
+		}
+		
+		function listar_estudiantes_con_test_no(){
+            $sql = "call SP_LISTAR_ESTUDIANTE_CON_TEST_FALTAATENDER()";
 			$arreglo = array();
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
@@ -70,7 +97,24 @@
 				$this->conexion->cerrar();
 			}
 		}
-		
+		function Atender_Estudiante_Cancelar($idusuario){
+            $sql = "UPDATE talumno SET talumno.atendido='NO' WHERE talumno.CodAlumno ='$idusuario' ";
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				return 1;
+				
+			}else{
+				return 0;
+			}
+		}
+		function Atender_Estudiante($idusuario){
+            $sql = "UPDATE talumno SET talumno.atendido='SI' WHERE talumno.CodAlumno ='$idusuario' ";
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				return 1;
+				
+			}else{
+				return 0;
+			}
+		}
 		function Modificar_Estatus_Usuario($idusuario,$estatus){
             $sql = "call SP_MODIFICAR_ESTATUS_USUARIO('$idusuario','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
@@ -81,8 +125,8 @@
 			}
 		}
 		
-		function Modificar_Estatus_ESTUDIANTE_NO($dni,$estado){
-            $sql = "call SP_MODIFICAR_ESTATUS_ESTUDIANTE('$dni','$estado')";
+		function Modificar_Estatus_ESTUDIANTE_NO($dni,$estado,$x){
+            $sql = "call SP_MODIFICAR_ESTATUS_ESTUDIANTE('$dni','$estado','$x')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				return 1;
 				
